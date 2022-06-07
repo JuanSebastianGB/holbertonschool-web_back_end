@@ -8,7 +8,8 @@ from typing import Tuple, List, Any
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """
-    It takes a tuple and returns a list that contains each item in the tuple repeated a number of times
+    It takes a tuple and returns a list that contains each item
+    in the tuple repeated a number of times
     equal to the factor argument
 
     :param lst: Tuple
