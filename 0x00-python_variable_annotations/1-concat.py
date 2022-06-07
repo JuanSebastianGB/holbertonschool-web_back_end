@@ -1,4 +1,4 @@
-# /usr/bin/env python3
+#!/usr/bin/env python3
 """ Type annotations are a way to explicitly
 define the type of a variable."""
 
