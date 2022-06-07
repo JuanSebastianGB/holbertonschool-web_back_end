@@ -7,7 +7,17 @@ from typing import Tuple, List, Any
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
-    zoomed_in: List[Any] = [
+    """
+    It takes a tuple and returns a list that contains each item in the tuple repeated a number of times
+    equal to the factor argument
+
+    :param lst: Tuple
+    :type lst: Tuple
+    :param factor: int = 2, defaults to 2
+    :type factor: int (optional)
+    :return: A list of the items in the tuple, repeated by the factor.
+    """
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]
