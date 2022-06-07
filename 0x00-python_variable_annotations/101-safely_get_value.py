@@ -14,7 +14,7 @@ def safely_get_value(
 ) -> Union[T, None]:
     """
     "If the key is in the dictionary, return the value,
- otherwise return the default value."
+    otherwise return the default value."
 
     The function is generic, meaning that it can be used
     with any type of dictionary and any type of
