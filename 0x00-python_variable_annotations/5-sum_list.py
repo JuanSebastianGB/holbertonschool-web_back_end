@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# """ Type annotations are a way to explicitly
+""" Type annotations are a way to explicitly
 import typing
 
 
