@@ -21,5 +21,6 @@ async def task_wait_n(n: int, max_delay: int) -> typing.List[float]:
     :type max_delay: int
     :return: A list of floats, sorted in ascending order.
     """
-    return sorted(await asyncio.gather(*[task_wait_random(max_delay)
-                                         for i in range(n)]))
+    list_got = await asyncio.gather(*[task_wait_random(max_delay)
+                                      for y in range(n)])
+    return sorted(list_got)
