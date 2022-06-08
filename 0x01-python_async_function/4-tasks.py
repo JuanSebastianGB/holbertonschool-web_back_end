@@ -10,8 +10,10 @@ task_wait_random = __import__('3-tasks').task_wait_random
 
 async def task_wait_n(n: int, max_delay: int) -> typing.List[float]:
     """
-    It creates a list of `n` tasks, each of which waits for a random amount of time between 0 and
-    `max_delay` seconds, and then returns a list of the times that each task waited
+    It creates a list of `n` tasks, each of which waits for a
+    random amount of time between 0 and
+    `max_delay` seconds, and then returns a list of the times
+    that each task waited
 
     :param n: the number of tasks to run
     :type n: int
