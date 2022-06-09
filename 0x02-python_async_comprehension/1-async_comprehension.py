@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """1. Async Comprehensions """
-from typing import Generator
+from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension() -> Generator[float, None, None]:
+async def async_comprehension() -> List[float]:
     """
     "Return a list of floats, where each float is the result
     of awaiting an element from the
