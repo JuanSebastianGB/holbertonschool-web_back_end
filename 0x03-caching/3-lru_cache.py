@@ -25,12 +25,15 @@ class LRUCache(BaseCaching):
         :param item: the item to be added to the cache
         """
         if key and item:
-            if self.cache_data.__len__() >= BaseCaching.MAX_ITEMS:
-                last_item = self.aux_list.pop()
-                print(f'DISCARD: {last_item}')
-                del self.cache_data[last_item]
+            if self.cache_data.get(key):
+                self.aux_list.remove(key)
             self.cache_data[key] = item
             self.aux_list.append(key)
+            if self.cache_data.__len__() > BaseCaching.MAX_ITEMS:
+                print(f'DISCARD: {self.aux_list[0]}')
+                if key in self.cache_data:
+                    del self.cache_data[self.aux_list[0]]
+                    self.aux_list.pop(0)
 
     def get(self, key):
         """
