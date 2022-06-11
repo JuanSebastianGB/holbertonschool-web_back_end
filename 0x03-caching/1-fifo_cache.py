@@ -26,6 +26,7 @@ class FIFOCache(BaseCaching):
             self.cache_data[key] = item
             self.aux_list.append(key)
             if self.cache_data.__len__() > BaseCaching.MAX_ITEMS:
+                print(f'DISCARD: {self.aux_list[0]}')
                 del self.cache_data[self.aux_list[0]]
                 self.aux_list.pop(0)
 
