@@ -14,9 +14,12 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """
-        If the key and item are not empty, add the key and item to the cache_data dictionary and append the
-        key to the aux_list. If the length of the cache_data dictionary is greater than the MAX_ITEMS
-        constant, delete the first item in the cache_data dictionary and remove the first item in the
+        If the key and item are not empty, add the key and item
+        to the cache_data dictionary and append the
+        key to the aux_list. If the length of the cache_data
+        dictionary is greater than the MAX_ITEMS
+        constant, delete the first item in the cache_data
+        dictionary and remove the first item in the
         aux_list.
 
         :param key: the key to be added to the cache
@@ -32,7 +35,8 @@ class FIFOCache(BaseCaching):
 
     def get(self, key):
         """
-        If the key is in the cache and the cache is not empty, return the value of the key
+        If the key is in the cache and the cache is not empty,
+        return the value of the key
 
         :param key: The key to be stored in the cache
         :return: The value of the key in the cache_data dictionary.
