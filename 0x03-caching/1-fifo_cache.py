@@ -37,6 +37,6 @@ class FIFOCache(BaseCaching):
         :param key: The key to be stored in the cache
         :return: The value of the key in the cache_data dictionary.
         """
-        if key not in self.cache_data or not self.cache[key]:
-            return None
-        return self.cache_data[key]
+        if key in self.cache_data and self.cache_data.__len__() > 0:
+            return self.cache_data[key]
+        return None
