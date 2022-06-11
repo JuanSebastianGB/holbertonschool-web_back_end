@@ -30,7 +30,7 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
             self.aux_list.append(key)
             if self.cache_data.__len__() > BaseCaching.MAX_ITEMS:
-                print('DISCARD {}'.format(self.aux_list[0]))
+                print(f'DISCARD: {self.aux_list[0]}')
                 if key in self.cache_data:
                     del self.cache_data[self.aux_list[0]]
                     self.aux_list.pop(0)
