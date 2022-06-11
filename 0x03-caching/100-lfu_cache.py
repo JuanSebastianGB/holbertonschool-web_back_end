@@ -41,10 +41,10 @@ class LFUCache(BaseCaching):
                     key_to_remove = keys_with_less_frequency[0]
                 else:
                     key_to_remove = keys_with_less_frequency[0]
-
                 self.aux_list.remove(key_to_remove)
                 del self.aux_dict[key_to_remove]
                 del self.cache_data[key_to_remove]
+                print(f'Discard: {key_to_remove}')
 
             if self.aux_dict.get(key):
                 self.aux_dict[key] += 1
