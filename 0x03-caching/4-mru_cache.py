@@ -8,7 +8,7 @@ class MRUCache(BaseCaching):
     """ CLASS MRU Cache """
 
     def __init__(self):
-        """ Initialize LRU Cache """
+        """ Initialize MRU Cache """
         super().__init__()
         self.aux_list = []
 
