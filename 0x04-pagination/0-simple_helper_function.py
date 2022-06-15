@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+from typing import Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     "Return a range of indexes for a given page and page size."
     :param page: The page number to return
@@ -10,5 +11,5 @@ def index_range(page: int, page_size: int) -> tuple:
     :type page_size: int
     :return: A range object
     """
-    result = page * page_size
+    result: int = page * page_size
     return (result - page_size, result)
