@@ -4,6 +4,8 @@ from typing import List
 import re
 import logging
 
+PII_FIELDS = ["name", "email", "ssn", "password", "ip"]
+
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
@@ -51,3 +53,18 @@ class RedactingFormatter(logging.Formatter):
             message = re.sub(f'{field}=.*?{separator}',
                              f'{field}={redaction}{separator}', message)
         return message
+
+
+def get_logger() -> logging.Logger:
+    """
+    It creates a logger that will log to the console,
+    and will redact any fields in the log message that
+    are in the list of PII_FIELDS
+    :return: A logger object.
+    """
+    logger = logging.getLogger('user_data')
+    logger.setLevel(logging.INFO)
+    logger.propagate = False
+    logger.addHandler(logging.StreamHandler())
+    logger.handlers[0].setFormatter(RedactingFormatter(PII_FIELDS))
+    return logger
