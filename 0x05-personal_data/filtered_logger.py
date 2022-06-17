@@ -33,10 +33,11 @@ class RedactingFormatter(logging.Formatter):
     def filter_datum(self, fields: List[str], redaction: str,
                      message: str, separator: str) -> str:
         """
-        It takes a list of fields, a redaction string, a message, and a separator,
-        and returns a redacted version of the message
+        It takes a list of fields, a redaction string, a message,
+        and a separator, and returns a redacted version of the message
 
-        :param fields: A list of strings that represent the fields to be redacted
+        :param fields: A list of strings that represent the fields to be
+        redacted
         :type fields: List[str]
         :param redaction: The string to replace the data with
         :type redaction: str
