@@ -57,10 +57,8 @@ class RedactingFormatter(logging.Formatter):
 
 def get_logger() -> logging.Logger:
     """
-    It creates a logger that will log to the console,
-    and will redact any fields in the log message that
-    are in the list of PII_FIELDS
-    :return: A logger object.
+    It creates a logger that will redact any PII fields from the log messages
+    :return: A logger object
     """
     logger: logging.Logger = logging.getLogger('user_data')
     logger.setLevel(logging.INFO)
