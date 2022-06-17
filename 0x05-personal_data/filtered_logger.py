@@ -4,7 +4,7 @@ from typing import List
 import re
 import logging
 
-PII_FIELDS = ["name", "email", "ssn", "password", "phone"]
+PII_FIELDS = ("name", "email", "ssn", "password", "phone")
 
 
 class RedactingFormatter(logging.Formatter):
