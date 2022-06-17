@@ -62,7 +62,7 @@ def get_logger() -> logging.Logger:
     are in the list of PII_FIELDS
     :return: A logger object.
     """
-    logger = logging.getLogger('user_data')
+    logger: logging.Logger = logging.getLogger('user_data')
     logger.setLevel(logging.INFO)
     logger.propagate = False
     stream_handler = logging.StreamHandler()
