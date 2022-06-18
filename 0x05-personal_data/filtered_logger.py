@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ Main file """
+import mysql.connector
 from typing import List
 import re
 import logging
@@ -67,3 +68,19 @@ def get_logger() -> logging.Logger:
     stream_handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
     logger.addHandler(stream_handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """
+    It returns a connection to the database
+    :return: A MySQLConnection object.
+    """
+    import os
+
+    return mysql.connector.connect(
+        user=os.environ.get('PERSONAL_DATA_DB_USERNAME'),
+        password=os.environ.get('PERSONAL_DATA_DB_PASSWORD'),
+        host=os.environ.get('PERSONAL_DATA_DB_HOST'),
+        database=os.environ.get('PERSONAL_DATA_DB_NAME'),
+        port=3306
+    )

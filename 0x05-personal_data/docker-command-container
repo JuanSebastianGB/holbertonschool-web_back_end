@@ -1,0 +1,1 @@
+docker run -v /home/cbas/mysql-docker:/etc/mysql/conf.d --name holberton -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d --hostname holberton  mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
