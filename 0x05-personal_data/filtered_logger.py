@@ -84,3 +84,15 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         database=os.environ.get('PERSONAL_DATA_DB_NAME'),
         port=3306
     )
+
+
+# The main function of the program.
+if __name__ == "__main__":
+    logger = get_logger()
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        logger.log(logging.INFO, row[0])
+    cursor.close()
+    db.close()
