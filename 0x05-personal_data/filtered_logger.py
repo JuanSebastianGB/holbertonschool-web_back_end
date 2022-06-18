@@ -86,13 +86,24 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
 
 
-# The main function of the program.
-if __name__ == "__main__":
-    logger = get_logger()
+def main():
+    """
+    It connects to the database, selects all the rows from the
+    users table, and prints them to the log
+    """
     db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM users;")
+    cursor = db.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM users;')
+    logger = get_logger()
     for row in cursor:
-        logger.log(logging.INFO, row[0])
+        message = ''
+        for key in row:
+            message += f'{key}={row[key]}; '
+        logger.info(message)
     cursor.close()
     db.close()
+
+
+# The main function of the program.
+if __name__ == "__main__":
+    main()
