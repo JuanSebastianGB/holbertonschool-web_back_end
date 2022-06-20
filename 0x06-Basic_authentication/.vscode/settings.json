@@ -1,5 +1,5 @@
 {
-  "editor.fontSize": 12,
+  "editor.fontSize": 15,
   "editor.minimap.enabled": false,
   "editor.wordWrap": "on",
   "python.linting.pycodestyleEnabled": true,

@@ -70,13 +70,19 @@ class BasicAuth(Auth):
         :type decoded_base64_authorization_header: str
         :return: The user credentials.
         """
+        import re
         if decoded_base64_authorization_header is None:
             return (None, None)
         if type(decoded_base64_authorization_header) != str:
             return (None, None)
         if decoded_base64_authorization_header.find(':') == -1:
             return (None, None)
-        return tuple(decoded_base64_authorization_header.split(':'))
+        matched_index = re.search(
+            ':', decoded_base64_authorization_header).span()[0]
+        return (
+            decoded_base64_authorization_header[0:matched_index],
+            decoded_base64_authorization_header[matched_index+1:]
+        )
 
     def user_object_from_credentials(
         self, user_email: str, user_pwd: str
