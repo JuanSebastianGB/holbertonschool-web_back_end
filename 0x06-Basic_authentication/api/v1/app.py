@@ -13,10 +13,25 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-auth = None
-if os.getenv('AUTH_TYPE') == 'auth':
-    from api.v1.auth.auth import Auth
-    auth = Auth()
+
+def define_auth():
+    """
+    It returns an instance of the class that is specified in the environment
+    variable `AUTH_TYPE`
+    :return: The class that is being returned is the one that is being selected
+    """
+    auth = None
+    selected_class = os.getenv('AUTH_TYPE')
+    if selected_class == 'auth':
+        from api.v1.auth.auth import Auth
+        auth = Auth()
+    if selected_class == 'basic_auth':
+        from api.v1.auth.basic_auth import BasicAuth
+        auth = BasicAuth()
+    return auth
+
+
+auth = define_auth()
 
 
 @app.before_request
