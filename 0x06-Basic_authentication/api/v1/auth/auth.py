@@ -28,8 +28,17 @@ class Auth:
         return path not in excluded_paths
 
     def authorization_header(self, request=None) -> str:
+        """
+        If the request has an authorization header, return it, otherwise
+        return None
+
+        :param request: The request object
+        :return: The authorization header from the request.
+        """
         if request is None:
             return None
+        return request.headers.get('Authorization') if \
+            request.headers.get('Authorization') is not None else None
 
     def current_user(self, request=None) -> TypeVar('User'):
         return None
