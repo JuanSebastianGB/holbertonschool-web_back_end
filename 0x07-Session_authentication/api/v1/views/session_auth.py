@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# """ Module of Session Auth Routes """
+""" Module of Session Auth Routes """
 
 import os
 from models.user import User
