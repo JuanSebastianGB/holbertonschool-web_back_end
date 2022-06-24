@@ -3,6 +3,7 @@
 
 import uuid
 from api.v1.auth.auth import Auth
+from models.user import User
 
 
 class SessionAuth(Auth):
@@ -36,3 +37,16 @@ class SessionAuth(Auth):
         if session_id is None or type(session_id) != str:
             return None
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """
+        Return the user ID for the given session ID.
+
+            :param request: The request to get the user ID for
+            :type request: str
+            :return: The user ID for the given session ID
+            :rtype: str
+        """
+        session_cookie = self.session_cookie(request)
+        session_id = self.user_id_for_session_id(session_cookie)
+        return User.get(session_id)
