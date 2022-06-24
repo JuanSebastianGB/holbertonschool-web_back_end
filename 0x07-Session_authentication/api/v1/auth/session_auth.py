@@ -2,9 +2,10 @@
 """ Session Auth module"""
 
 import uuid
+from api.v1.auth.auth import Auth
 
 
-class SessionAuth():
+class SessionAuth(Auth):
     """ Session Auth class"""
     user_id_by_session_id = {}
 
@@ -22,3 +23,16 @@ class SessionAuth():
         session_id = str(uuid.uuid4())
         self.user_id_by_session_id[session_id] = user_id
         return session_id
+
+    def user_id_for_session_id(self, session_id: str = None) -> str:
+        """
+        Return the user ID for the given session ID.
+
+            :param session_id: The session ID to get the user ID for
+            :type session_id: str
+            :return: The user ID for the given session ID
+            :rtype: str
+        """
+        if session_id is None or type(session_id) != str:
+            return None
+        return self.user_id_by_session_id.get(session_id)

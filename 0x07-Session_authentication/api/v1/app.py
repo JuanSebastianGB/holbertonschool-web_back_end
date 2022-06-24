@@ -28,6 +28,9 @@ def define_auth():
     if selected_class == 'basic_auth':
         from api.v1.auth.basic_auth import BasicAuth
         auth = BasicAuth()
+    if selected_class == 'session_auth':
+        from api.v1.auth.session_auth import SessionAuth
+        auth = SessionAuth()
     return auth
 
 
