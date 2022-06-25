@@ -31,6 +31,9 @@ def define_auth():
     if selected_class == 'session_auth':
         from api.v1.auth.session_auth import SessionAuth
         auth = SessionAuth()
+    if selected_class == 'session_exp_auth':
+        from api.v1.auth.session_exp_auth import SessionExpAuth
+        auth = SessionExpAuth()
     return auth
 
 

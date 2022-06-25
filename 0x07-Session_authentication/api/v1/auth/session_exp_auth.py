@@ -1,6 +1,6 @@
 #!/user/bin/env python3
 """ Module of expiration Class """
-import datetime
+from datetime import datetime, timedelta
 import os
 from api.v1.auth.session_auth import SessionAuth
 
@@ -28,8 +28,11 @@ class SessionExpAuth(SessionAuth):
         session_id = super().create_session(user_id)
         if session_id is None:
             return None
-        self.user_id_by_session_id[session_id] = user_id
-        self.user_id_by_session_id['created_at'] = datetime.now()
+        session_dictionary = {
+            'user_id': user_id,
+            'created_at': datetime.now()
+        }
+        self.user_id_by_session_id[session_id] = session_dictionary
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
@@ -49,7 +52,7 @@ class SessionExpAuth(SessionAuth):
         created_at = self.user_id_by_session_id.get('created_at')
         if created_at is not None:
             return None
-        duration_in_seconds = datetime.timedelta(seconds=self.session_duration)
+        duration_in_seconds = timedelta(seconds=self.session_duration)
         if duration_in_seconds < datetime.now():
             return None
         return user_id
