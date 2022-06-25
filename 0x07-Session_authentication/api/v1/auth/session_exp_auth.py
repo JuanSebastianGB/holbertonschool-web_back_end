@@ -1,11 +1,12 @@
 #!/user/bin/env python3
-
+""" Module of expiration Class """
 import datetime
 import os
 from api.v1.auth.session_auth import SessionAuth
 
 
 class SessionExpAuth(SessionAuth):
+    """ Session Exp Auth class"""
 
     def __init__(self) -> None:
         super().__init__()
