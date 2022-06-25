@@ -58,13 +58,21 @@ class SessionDBAuth(SessionExpAuth):
         """
 
         if request is None:
-            return None
+            return False
         session_cookie = self.session_cookie(request)
-        session_id = self.user_id_for_session_id(session_cookie)
-        if session_id is None:
-            return None
+        if session_cookie is None:
+            return False
+        user_id = self.user_id_for_session_id(session_cookie)
+        if user_id is None:
+            return False
+        user_session = UserSession.search({
+            'session_id': session_cookie
+        })
+        if user_session is None:
+            return False
         try:
-            UserSession.delete(session_id)
+            user_session[0].remove()
+            UserSession.save_to_file()
             return True
         except Exception as e:
-            return e
+            return False
