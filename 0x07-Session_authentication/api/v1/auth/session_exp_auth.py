@@ -14,7 +14,6 @@ class SessionExpAuth(SessionAuth):
         the value of the environment variable
         `SESSION_DURATION` if it exists, or to 0 if it doesn't
         """
-        super().__init__()
         try:
             self.session_duration = int(os.getenv("SESSION_DURATION"))
         except ValueError:
