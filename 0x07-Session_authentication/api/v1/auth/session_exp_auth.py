@@ -1,5 +1,7 @@
-#!/user/bin/env python3
-""" Module of expiration Class """
+#!/usr/bin/env python3
+"""
+Module of expiration Class
+"""
 from datetime import datetime, timedelta
 import os
 from api.v1.auth.session_auth import SessionAuth
