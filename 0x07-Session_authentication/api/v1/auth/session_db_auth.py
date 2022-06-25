@@ -23,8 +23,9 @@ class SessionDBAuth(SessionExpAuth):
         session_id = super().create_session(user_id)
         if not session_id:
             return None
-        new_user = UserSession(user_id=user_id, session_id=session_id)
-        new_user.save()
+        new_session = UserSession(user_id=user_id, session_id=session_id)
+        new_session.save()
+        UserSession.save_to_file()
         return session_id
 
     def user_id_for_session_id(self, session_id=None):
@@ -37,22 +38,16 @@ class SessionDBAuth(SessionExpAuth):
 
         if session_id is None:
             return None
-        try:
-            UserSession.load_from_file()
-            matches = UserSession.search({session_id: session_id})
-            if matches is None:
-                return None
-            for match in matches:
-                created_at = match.get('created_at')
-                if not created_at:
-                    return None
-                if created_at + timedelta(self.session_duration) <\
-                        datetime.now():
-                    return None
-                return match.get('user_id')
+        UserSession.load_from_file()
+        matches = UserSession.search({'session_id': session_id})
+        if not matches:
             return None
-        except Exception as e:
-            return e
+        user_session = matches[0]
+        created_at = user_session.created_at
+        if created_at + timedelta(seconds=self.session_duration) <\
+                datetime.now():
+            return None
+        return user_session.user_id
 
     def destroy_session(self, request=None):
         """
