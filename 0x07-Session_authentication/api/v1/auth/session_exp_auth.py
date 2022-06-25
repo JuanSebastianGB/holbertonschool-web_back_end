@@ -9,6 +9,11 @@ class SessionExpAuth(SessionAuth):
     """ Session Exp Auth class"""
 
     def __init__(self) -> None:
+        """
+        It initializes the class by setting the session duration to
+        the value of the environment variable
+        `SESSION_DURATION` if it exists, or to 0 if it doesn't
+        """
         super().__init__()
         try:
             self.session_duration = int(os.getenv("SESSION_DURATION"))
@@ -44,15 +49,19 @@ class SessionExpAuth(SessionAuth):
         """
         if not session_id:
             return None
-        if self.user_id_by_session_id.get(session_id) is None:
+        user_dictionary = self.user_id_by_session_id.get(session_id)
+        if user_dictionary is None:
             return None
-        user_id = self.user_id_by_session_id.get(session_id)
+        user = user_dictionary.get('user_id')
+        if user is None:
+            return None
         if self.session_duration <= 0:
-            return user_id
-        created_at = self.user_id_by_session_id.get('created_at')
-        if created_at is not None:
+            return user
+
+        created_at = user_dictionary.get('created_at')
+        if not created_at:
             return None
         duration_in_seconds = timedelta(seconds=self.session_duration)
-        if duration_in_seconds < datetime.now():
+        if created_at + duration_in_seconds < datetime.now():
             return None
-        return user_id
+        return user
