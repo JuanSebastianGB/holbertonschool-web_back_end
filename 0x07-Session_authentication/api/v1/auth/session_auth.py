@@ -51,20 +51,22 @@ class SessionAuth(Auth):
         session_id = self.user_id_for_session_id(session_cookie)
         return User.get(session_id)
 
-
-def destroy_session(self, request=None):
-    """Deletes de user session / logout"""
-
-    if request is None:
-        return False
-    session_id = self.session_cookie(request)
-    if session_id is None:
-        return False
-    user_id = self.user_id_for_session_id(session_id)
-    if not user_id:
-        return False
-    try:
-        del self.user_id_by_session_id[session_id]
-    except Exception:
-        pass
-    return True
+    def destroy_session(self, request=None):
+        """
+        It deletes the session id from the dictionary
+        :param request: The request object
+        :return: A boolean value.
+        """
+        if request is None:
+            return False
+        session_id = self.session_cookie(request)
+        if session_id is None:
+            return False
+        user_id = self.user_id_for_session_id(session_id)
+        if not user_id:
+            return False
+        try:
+            del self.user_id_by_session_id[session_id]
+        except Exception:
+            pass
+        return True
