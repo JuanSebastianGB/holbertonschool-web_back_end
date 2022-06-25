@@ -7,8 +7,9 @@ import logging
 
 PII_FIELDS = ("name", "email", "ssn", "password", "phone")
 
+
 def filter_datum(fields: List[str], redaction: str,
-                message: str, separator: str) -> str:
+                 message: str, separator: str) -> str:
     """
     It takes a list of fields, a redaction string, a message,
     and a separator, and returns a redacted version of the message
@@ -26,8 +27,9 @@ def filter_datum(fields: List[str], redaction: str,
     """
     for field in fields:
         message = re.sub(f'{field}=.*?{separator}',
-                            f'{field}={redaction}{separator}', message)
+                         f'{field}={redaction}{separator}', message)
     return message
+
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
@@ -51,8 +53,8 @@ class RedactingFormatter(logging.Formatter):
         :return: A string.
         """
         return filter_datum(list(self.fields), self.REDACTION,
-                                 logging.Formatter(self.FORMAT).format(record),
-                                 self.SEPARATOR)
+                            logging.Formatter(self.FORMAT).format(record),
+                            self.SEPARATOR)
 
 
 def get_logger() -> logging.Logger:
