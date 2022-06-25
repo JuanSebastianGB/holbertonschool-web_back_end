@@ -52,3 +52,23 @@ class SessionDBAuth(SessionExpAuth):
             return None
         except Exception as e:
             return e
+
+    def destroy_session(self, request=None):
+        """
+        It deletes the session id from the dictionary
+
+        :param request: The request object
+        :return: A boolean value.
+        """
+
+        if request is None:
+            return None
+        session_cookie = self.session_cookie(request)
+        session_id = self.user_id_for_session_id(session_cookie)
+        if session_id is None:
+            return None
+        try:
+            UserSession.delete(session_id)
+            return True
+        except Exception as e:
+            return e
