@@ -8,18 +8,18 @@ from api.v1.auth.session_auth import SessionAuth
 class SessionExpAuth(SessionAuth):
     """ Session Exp Auth class"""
 
-    def __init__(self) -> None:
+    def __init__(self):
         """
         It initializes the class by setting the session duration to
         the value of the environment variable
         `SESSION_DURATION` if it exists, or to 0 if it doesn't
         """
         try:
-            self.session_duration = int(os.getenv("SESSION_DURATION"))
+            self.session_duration = int(os.getenv("SESSION_DURATION", 0))
         except ValueError:
             self.session_duration = 0
 
-    def create_session(self, user_id: str = None) -> str:
+    def create_session(self, user_id: str = None):
         """
         It creates a session for a user, and returns the session ID
 
