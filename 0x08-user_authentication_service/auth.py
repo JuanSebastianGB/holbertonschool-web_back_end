@@ -5,6 +5,8 @@ import bcrypt
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
+from flask import jsonify
 
 
 def _hash_password(password: str):
@@ -41,17 +43,10 @@ class Auth:
         :type password: str
         :return: User object
         """
-
-        if not email or not password:
-            raise ValueError("Email and password are required.")
         try:
             self._db.find_user_by(email=email)
-            raise ValueError(f"User {email} already exists")
+            raise(ValueError)
         except NoResultFound:
-            pass
-        new_user = {
-            'email': email,
-            'hashed_password': _hash_password(password)
-        }
-        user = self._db.add_user(**new_user)
-        return user
+            hashed_password = _hash_password(password)
+            created_user = self._db.add_user(email, hashed_password)
+            return created_user

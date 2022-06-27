@@ -17,13 +17,15 @@ def has_keys(**kwargs):
     If all the keys in the kwargs dictionary are not in the properties list,
     raise an error."
     """
-    properties = ['id', 'email', 'hashed_password',
-                  'session_id', 'reset_token']
-    result = all(
+    properties = [
+        'id',
+        'email',
+        'session_id',
+        'reset_token',
+        'hashed_password'
+    ]
+    return all(
         [True if key in properties else False for key in kwargs.keys()])
-    if not result:
-        raise(InvalidRequestError("Invalid request"))
-    return True
 
 
 class DB:
@@ -58,16 +60,17 @@ class DB:
     def find_user_by(self, **kwargs) -> User:
         """Find a user by parameters
         """
-        has_keys(**kwargs)
-        try:
-            user = self._session.query(User).filter_by(**kwargs).one()
-        except NoResultFound:
-            raise NoResultFound("No user found")
+        if not has_keys(**kwargs):
+            raise(InvalidRequestError)
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if user is None:
+            raise(NoResultFound)
         return user
 
     def update_user(self, user_id: int, **kwargs):
         """Update a user by parameters """
-        has_keys(**kwargs)
+        if not has_keys(**kwargs):
+            raise(ValueError)
         user_found = self.find_user_by(id=user_id)
         [setattr(user_found, key, value) for key, value in kwargs.items()]
         return None
