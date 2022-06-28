@@ -89,3 +89,21 @@ class Auth:
             return session_id
         except NoResultFound:
             return None
+
+    def get_user_from_session_id(self, session_id: str):
+        """ Get the user from the session id."""
+        try:
+            if session_id is None:
+                return None
+            user = self._db.find_user_by(session_id=session_id)
+            return user
+        except Exception as e:
+            return None
+
+    def destroy_session(self, user_id: str):
+        """ Destroy the session for the user with the given id."""
+        try:
+            self._db.update_user(user_id, session_id=None)
+        except NoResultFound:
+            pass
+        return None
