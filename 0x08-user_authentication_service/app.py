@@ -78,6 +78,20 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def profile():
+    """
+    It returns the user's email
+    :return: A JSON object with the user's email
+    """
+
+    session_id = request.cookies.get('session_id')
+    user = AUTH.get_user_from_session_id(session_id)
+    if not session_id or not user:
+        abort(403)
+    return jsonify({"email": user.email})
+
+
 if __name__ == "__main__":
     """ Running the app on port 5000 """
     app.run(host="0.0.0.0", port="5000")
