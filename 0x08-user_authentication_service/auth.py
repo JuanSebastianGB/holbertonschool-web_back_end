@@ -107,3 +107,21 @@ class Auth:
         except NoResultFound:
             pass
         return None
+
+    def get_reset_password_token(self, email: str) -> str:
+        """
+        > It takes an email address, finds the user with that email address,
+        generates a reset token, and updates the user with that reset token
+
+        :param email: The email address of the user who wants to reset their
+        password
+        :type email: str
+        :return: A reset token
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            reset_token = self._generate_uuid()
+            self._db.update_user(user.id, reset_token=reset_token)
+            return reset_token
+        except Exception as err:
+            raise(ValueError)
