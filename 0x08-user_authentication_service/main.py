@@ -52,6 +52,13 @@ def profile_logged(session_id) -> None:
     assert response.json() == {"email": EMAIL}
 
 
+def log_out(session_id):
+    """ Validating user logout """
+    response = requests.delete(
+        f'{URL}/sessions', cookies={'session_id': session_id})
+    assert response.json() == {"message": "Bienvenue"}
+
+
 EMAIL = "guillaume@holberton.io"
 PASSWD = "b4l0u"
 NEW_PASSWD = "t4rt1fl3tt3"
@@ -66,7 +73,7 @@ if __name__ == "__main__":
     session_id = log_in(EMAIL, PASSWD)
     profile_logged(session_id)
     profile_unlogged()
-    # log_out(session_id)
+    log_out(session_id)
     # reset_token = reset_password_token(EMAIL)
     # update_password(EMAIL, reset_token, NEW_PASSWD)
     # log_in(EMAIL, NEW_PASSWD)
