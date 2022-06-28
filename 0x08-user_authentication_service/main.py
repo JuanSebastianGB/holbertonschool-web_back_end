@@ -59,13 +59,23 @@ def log_out(session_id):
     assert response.json() == {"message": "Bienvenue"}
 
 
-def reset_password_token(email):
+def reset_password_token(email: str) -> str:
     """ Validating user password reset token """
     response = requests.post(
         f'{URL}/reset_password', {'email': email})
     assert response.status_code == 200
     assert response.json() == {
         "email": email, "reset_token": response.json()['reset_token']}
+    return response.json()['reset_token']
+
+
+def update_password(email: str, reset_token: str, new_password: str):
+    """ Validating user password update """
+    response = requests.put(f"{URL}/reset_password",
+                            {'email': email, 'reset_token': reset_token,
+                             'new_password': new_password})
+    assert response.status_code == 200
+    assert response.json() == {"email": email, "message": "Password updated"}
 
 
 EMAIL = "guillaume@holberton.io"
@@ -84,5 +94,5 @@ if __name__ == "__main__":
     profile_unlogged()
     log_out(session_id)
     reset_token = reset_password_token(EMAIL)
-    # update_password(EMAIL, reset_token, NEW_PASSWD)
-    # log_in(EMAIL, NEW_PASSWD)
+    update_password(EMAIL, reset_token, NEW_PASSWD)
+    log_in(EMAIL, NEW_PASSWD)

@@ -119,20 +119,14 @@ def reset_password():
     It takes a reset token and a new password, and updates the user's password
     :return: A JSON object with a message
     """
-
-    reset_token = request.form['reset_token']
-    new_password = request.form['new_password']
-    email = request.form['email']
-    if not reset_token or not new_password or not email:
-        abort(400)
     try:
-        user = AUTH.update_password(reset_token, new_password)
-        response = {
-            "email": user.email,
-            "message": "password updated"
-        }
+        email = request.form['email']
+        reset_token = request.form['reset_token']
+        new_password = request.form['new_password']
+        AUTH.update_password(reset_token, new_password)
+        response = {"email": email, "message": "Password updated"}
         return jsonify(response)
-    except Exception as err:
+    except Exception:
         abort(403)
 
 
