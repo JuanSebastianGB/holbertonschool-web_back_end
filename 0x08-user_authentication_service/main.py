@@ -1,10 +1,72 @@
 #!/usr/bin/env python3
-"""
-Main file
-"""
-from user import User
 
-print(User.__tablename__)
+""" end to end tests module"""
 
-for column in User.__table__.columns:
-    print("{}: {}".format(column, column.type))
+import requests
+
+URL = 'http://0.0.0.0:5000'
+
+
+def register_user(email: str, password: str) -> None:
+    """
+    Validating user registration
+    """
+    response = requests.post(f'{URL}/users',
+                             {'email': email, 'password': password})
+    assert response.status_code == 200
+    assert response.json() == {"email": email, "message": "user created"}
+
+
+def log_in_wrong_password(email: str, password: str) -> None:
+    """
+    Validating user login with wrong password
+    """
+    response = requests.post(f'{URL}/sessions',
+                             {'email': email, 'password': password})
+    assert response.status_code == 401
+
+
+def log_in(email: str, password: str) -> str:
+    """
+    Validating user login
+    """
+    response = requests.post(
+        f'{URL}/sessions', {'email': email, 'password': password})
+    assert response.json() == {"email": email, "message": "logged in"}
+    return response.cookies['session_id']
+
+
+def profile_unlogged() -> None:
+    """
+    Profile unlogged validation
+    """
+    response = requests.get(f'{URL}/profile')
+    assert response.status_code == 403
+
+
+def profile_logged(session_id) -> None:
+    """ Validating user profile """
+    response = requests.get(
+        f'{URL}/profile', cookies={'session_id': session_id})
+    assert response.status_code == 200
+    assert response.json() == {"email": EMAIL}
+
+
+EMAIL = "guillaume@holberton.io"
+PASSWD = "b4l0u"
+NEW_PASSWD = "t4rt1fl3tt3"
+
+
+if __name__ == "__main__":
+    """ A way to execute code only if the file was
+    executed directly, and not imported."""
+
+    register_user(EMAIL, PASSWD)
+    log_in_wrong_password(EMAIL, NEW_PASSWD)
+    session_id = log_in(EMAIL, PASSWD)
+    profile_logged(session_id)
+    profile_unlogged()
+    # log_out(session_id)
+    # reset_token = reset_password_token(EMAIL)
+    # update_password(EMAIL, reset_token, NEW_PASSWD)
+    # log_in(EMAIL, NEW_PASSWD)
