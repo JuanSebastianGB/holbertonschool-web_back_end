@@ -125,3 +125,23 @@ class Auth:
             return reset_token
         except Exception as err:
             raise(ValueError)
+
+    def update_password(self, reset_token: str, password: str) -> None:
+        """
+        > It takes a reset token and a new password, finds the user with that
+        reset token, hashes the password, and updates the user with the new
+        password
+
+        :param reset_token: The reset token
+        :type reset_token: str
+        :param password: The new password
+        :type password: str
+        :return: None
+        """
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            hashed_password = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=hashed_password,
+                                 reset_token=None)
+        except Exception as err:
+            raise(ValueError)
