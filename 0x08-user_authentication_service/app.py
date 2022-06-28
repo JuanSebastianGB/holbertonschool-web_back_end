@@ -41,6 +41,12 @@ def create_user():
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login():
+    """
+    If the user's email and password are valid, create a session and return
+    a response with a cookie containing the session ID
+    :return: A response object with a cookie.
+    """
+
     is_valid_login = AUTH.valid_login(**request.form)
     if not request.form['email'] or not\
             request.form['password'] or not\
