@@ -7,10 +7,9 @@ from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
-from flask import jsonify
 
 
-def _hash_password(password: str):
+def _hash_password(password: str) -> bytes:
     """
     It takes a password as a string, generates a salt, and then hashes the
     password using the salt
