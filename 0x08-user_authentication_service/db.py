@@ -67,7 +67,7 @@ class DB:
             raise(NoResultFound)
         return user
 
-    def update_user(self, user_id: int, **kwargs):
+    def update_user(self, user_id: int, **kwargs) -> None:
         """Update a user by parameters """
         if not has_keys(**kwargs):
             raise(ValueError)
