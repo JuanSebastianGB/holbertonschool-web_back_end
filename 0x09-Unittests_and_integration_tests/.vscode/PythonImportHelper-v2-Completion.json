@@ -1,0 +1,188 @@
+[
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Mapping",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "utils",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "utils",
+        "description": "utils",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_json",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "access_nested_map",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "memoize",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "access_nested_map",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "wraps",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "GithubOrgClient",
+        "kind": 6,
+        "importPath": "client",
+        "description": "client",
+        "peekOfCode": "class GithubOrgClient:\n    \"\"\"A Githib org client\n    \"\"\"\n    ORG_URL = \"https://api.github.com/orgs/{org}\"\n    def __init__(self, org_name: str) -> None:\n        \"\"\"Init method of GithubOrgClient\"\"\"\n        self._org_name = org_name\n    @memoize\n    def org(self) -> Dict:\n        \"\"\"Memoize org\"\"\"",
+        "detail": "client",
+        "documentation": {}
+    },
+    {
+        "label": "TEST_PAYLOAD",
+        "kind": 5,
+        "importPath": "fixtures",
+        "description": "fixtures",
+        "peekOfCode": "TEST_PAYLOAD = [\n  (\n    {\"repos_url\": \"https://api.github.com/orgs/google/repos\"},\n    [\n      {\n        \"id\": 7697149,\n        \"node_id\": \"MDEwOlJlcG9zaXRvcnk3Njk3MTQ5\",\n        \"name\": \"episodes.dart\",\n        \"full_name\": \"google/episodes.dart\",\n        \"private\": False,",
+        "detail": "fixtures",
+        "documentation": {}
+    },
+    {
+        "label": "TestAccessNestedMap",
+        "kind": 6,
+        "importPath": "test_utils",
+        "description": "test_utils",
+        "peekOfCode": "class TestAccessNestedMap(unittest.TestCase):\n    \"\"\"\n    the test access nested map\n    test cases class.\n    \"\"\"\n    @parameterized.expand([\n        ({\"a\": 1}, (\"a\",), 1),\n        ({\"a\": {\"b\": 2}}, (\"a\", ), {\"b\": 2}),\n        ({\"a\": {\"b\": 2}}, (\"a\", \"b\"), 2)\n    ])",
+        "detail": "test_utils",
+        "documentation": {}
+    },
+    {
+        "label": "access_nested_map",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:\n    \"\"\"Access nested map with key path.\n    Parameters\n    ----------\n    nested_map: Mapping\n        A nested map\n    path: Sequence\n        a sequence of key representing a path to the value\n    Example\n    -------",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_json",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def get_json(url: str) -> Dict:\n    \"\"\"Get JSON from remote URL.\n    \"\"\"\n    response = requests.get(url)\n    return response.json()\ndef memoize(fn: Callable) -> Callable:\n    \"\"\"Decorator to memoize a method.\n    Example\n    -------\n    class MyClass:",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "memoize",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def memoize(fn: Callable) -> Callable:\n    \"\"\"Decorator to memoize a method.\n    Example\n    -------\n    class MyClass:\n        @memoize\n        def a_method(self):\n            print(\"a_method called\")\n            return 42\n    >>> my_object = MyClass()",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "__all__ = [\n    \"access_nested_map\",\n    \"get_json\",\n    \"memoize\",\n]\ndef access_nested_map(nested_map: Mapping, path: Sequence) -> Any:\n    \"\"\"Access nested map with key path.\n    Parameters\n    ----------\n    nested_map: Mapping",
+        "detail": "utils",
+        "documentation": {}
+    }
+]
