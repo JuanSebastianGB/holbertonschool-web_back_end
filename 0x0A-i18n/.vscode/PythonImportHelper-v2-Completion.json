@@ -1,0 +1,44 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "getenv",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "0-app",
+        "description": "0-app",
+        "peekOfCode": "def index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file\n    is being run as a script or imported as a module.\"\"\"\n    host = getenv(\"API_HOST\", \"0.0.0.0\")",
+        "detail": "0-app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "0-app",
+        "description": "0-app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file",
+        "detail": "0-app",
+        "documentation": {}
+    }
+]
