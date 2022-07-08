@@ -4,7 +4,7 @@
 
 from os import getenv
 from flask import Flask, render_template, request
-from flask.ext.babel import Babel
+from flask_babel import Babel
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -19,6 +19,11 @@ def get_locale():
 class Config(object):
     """ The `Config` class is a class that contains a list of languages"""
     LANGUAGES = ['en', 'fr']
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
+
+
+app.config.from_object(Config)
 
 
 @app.route('/')

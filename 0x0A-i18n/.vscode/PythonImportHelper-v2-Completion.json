@@ -1,5 +1,21 @@
 [
     {
+        "label": "getenv",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "getenv",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -16,11 +32,69 @@
         "documentation": {}
     },
     {
-        "label": "getenv",
-        "importPath": "os",
-        "description": "os",
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
         "isExtraImport": true,
-        "detail": "os",
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Babel",
+        "importPath": "flask.ext.babel",
+        "description": "flask.ext.babel",
+        "isExtraImport": true,
+        "detail": "flask.ext.babel",
+        "documentation": {}
+    },
+    {
+        "label": "Babel",
+        "importPath": "flask_babel",
+        "description": "flask_babel",
+        "isExtraImport": true,
+        "detail": "flask_babel",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "0-app",
+        "description": "0-app",
+        "peekOfCode": "class Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n@app.route('/')\ndef index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('0-index.html')",
+        "detail": "0-app",
+        "documentation": {}
+    },
+    {
+        "label": "get_locale",
+        "kind": 2,
+        "importPath": "0-app",
+        "description": "0-app",
+        "peekOfCode": "def get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n@app.route('/')\ndef index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`",
+        "detail": "0-app",
         "documentation": {}
     },
     {
@@ -37,8 +111,62 @@
         "kind": 5,
         "importPath": "0-app",
         "description": "0-app",
-        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('0-index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file",
+        "peekOfCode": "app = Flask(__name__)\nbabel = Babel(app)\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n@app.route('/')",
         "detail": "0-app",
+        "documentation": {}
+    },
+    {
+        "label": "babel",
+        "kind": 5,
+        "importPath": "0-app",
+        "description": "0-app",
+        "peekOfCode": "babel = Babel(app)\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n@app.route('/')\ndef index():",
+        "detail": "0-app",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "1-app",
+        "description": "1-app",
+        "peekOfCode": "class Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n    BABEL_DEFAULT_LOCALE = 'en'\n    BABEL_DEFAULT_TIMEZONE = 'UTC'\napp.config.from_object(Config)\n@app.route('/')\ndef index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`",
+        "detail": "1-app",
+        "documentation": {}
+    },
+    {
+        "label": "get_locale",
+        "kind": 2,
+        "importPath": "1-app",
+        "description": "1-app",
+        "peekOfCode": "def get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n    BABEL_DEFAULT_LOCALE = 'en'\n    BABEL_DEFAULT_TIMEZONE = 'UTC'\napp.config.from_object(Config)\n@app.route('/')",
+        "detail": "1-app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "1-app",
+        "description": "1-app",
+        "peekOfCode": "def index():\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('0-index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file\n    is being run as a script or imported as a module.\"\"\"\n    host = getenv(\"API_HOST\", \"0.0.0.0\")",
+        "detail": "1-app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "1-app",
+        "description": "1-app",
+        "peekOfCode": "app = Flask(__name__)\nbabel = Babel(app)\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n    BABEL_DEFAULT_LOCALE = 'en'",
+        "detail": "1-app",
+        "documentation": {}
+    },
+    {
+        "label": "babel",
+        "kind": 5,
+        "importPath": "1-app",
+        "description": "1-app",
+        "peekOfCode": "babel = Babel(app)\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())\nclass Config(object):\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n    BABEL_DEFAULT_LOCALE = 'en'\n    BABEL_DEFAULT_TIMEZONE = 'UTC'",
+        "detail": "1-app",
         "documentation": {}
     }
 ]
