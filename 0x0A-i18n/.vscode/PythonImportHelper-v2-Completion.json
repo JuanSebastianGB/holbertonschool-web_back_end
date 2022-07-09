@@ -208,6 +208,38 @@
         "documentation": {}
     },
     {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "g",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Babel",
         "importPath": "flask_babel",
         "description": "flask_babel",
@@ -269,6 +301,31 @@
         "description": "flask_babel",
         "isExtraImport": true,
         "detail": "flask_babel",
+        "documentation": {}
+    },
+    {
+        "label": "Babel",
+        "importPath": "flask_babel",
+        "description": "flask_babel",
+        "isExtraImport": true,
+        "detail": "flask_babel",
+        "documentation": {}
+    },
+    {
+        "label": "refresh",
+        "importPath": "flask_babel",
+        "description": "flask_babel",
+        "isExtraImport": true,
+        "detail": "flask_babel",
+        "documentation": {}
+    },
+    {
+        "label": "pytz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytz",
+        "description": "pytz",
+        "detail": "pytz",
         "documentation": {}
     },
     {
@@ -638,6 +695,87 @@
         "description": "6-app",
         "peekOfCode": "users = {\n    1: {\"name\": \"Balou\", \"locale\": \"fr\", \"timezone\": \"Europe/Paris\"},\n    2: {\"name\": \"Beyonce\", \"locale\": \"en\", \"timezone\": \"US/Central\"},\n    3: {\"name\": \"Spock\", \"locale\": \"kg\", \"timezone\": \"Vulcan\"},\n    4: {\"name\": \"Teletubby\", \"locale\": None, \"timezone\": \"Europe/London\"},\n}\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    if request.args.get('locale') in Config.LANGUAGES:",
         "detail": "6-app",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "class Config():\n    \"\"\" The `Config` class is a class that contains a list of languages\"\"\"\n    LANGUAGES = ['en', 'fr']\n    BABEL_DEFAULT_LOCALE = 'en'\n    BABEL_DEFAULT_TIMEZONE = 'UTC'\napp.config.from_object(Config)\n@app.before_request\ndef before_request():\n    \"\"\"\n    > If the user is logged in, get the user object from",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "get_locale",
+        "kind": 2,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "def get_locale():\n    \"\"\" Locale selector. \"\"\"\n    if request.args.get('locale') in Config.LANGUAGES:\n        return request.args.get('locale')\n    if hasattr(g, \"user\") and (\n        g.user['locale'] and\n        g.user['locale'] in Config.LANGUAGES\n    ):\n        return g.user['locale']\n    return request.accept_languages.best_match(app.config['LANGUAGES'])",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "kind": 2,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "def get_user() -> dict:\n    \"\"\"\n    If the login_as query parameter is present,\n    return the user with the corresponding id, otherwise\n    return None\n    :return: A dictionary of the user.\n    \"\"\"\n    user_id = request.args.get('login_as')\n    if user_id and int(user_id) in users:\n        return users[int(user_id)]",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "before_request",
+        "kind": 2,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "def before_request():\n    \"\"\"\n    > If the user is logged in, get the user object from\n    the database and store it in the global\n    variable `g.user`\n    \"\"\"\n    if get_user() is not None:\n        g.user = get_user()\n        refresh()\ndef get_timezone():",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "get_timezone",
+        "kind": 2,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "def get_timezone():\n    \"\"\"timezone to display to user\"\"\"\n    try:\n        if request.args['timezone']:\n            return pytz.timezone(request.args['timezone'])\n        if g.user and g.user['timezone']:\n            return pytz.timezone(g.user['timezone'])\n    except pytz.exceptions.UnknownTimeZoneError:\n        return pytz.timezone(app.config['BABEL_DEFAULT_TIMEZONE'])\n@app.route('/', strict_slashes=False)",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "def index() -> str:\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('6-index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file\n    is being run as a script or imported as a module.\"\"\"\n    app.run(host='0.0.0.0', port=5000, debug=True)",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "app = Flask(__name__)\nbabel = Babel(app)\nusers = {\n    1: {\"name\": \"Balou\", \"locale\": \"fr\", \"timezone\": \"Europe/Paris\"},\n    2: {\"name\": \"Beyonce\", \"locale\": \"en\", \"timezone\": \"US/Central\"},\n    3: {\"name\": \"Spock\", \"locale\": \"kg\", \"timezone\": \"Vulcan\"},\n    4: {\"name\": \"Teletubby\", \"locale\": None, \"timezone\": \"Europe/London\"},\n}\n@babel.localeselector\ndef get_locale():",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "babel",
+        "kind": 5,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "babel = Babel(app)\nusers = {\n    1: {\"name\": \"Balou\", \"locale\": \"fr\", \"timezone\": \"Europe/Paris\"},\n    2: {\"name\": \"Beyonce\", \"locale\": \"en\", \"timezone\": \"US/Central\"},\n    3: {\"name\": \"Spock\", \"locale\": \"kg\", \"timezone\": \"Vulcan\"},\n    4: {\"name\": \"Teletubby\", \"locale\": None, \"timezone\": \"Europe/London\"},\n}\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"",
+        "detail": "7-app",
+        "documentation": {}
+    },
+    {
+        "label": "users",
+        "kind": 5,
+        "importPath": "7-app",
+        "description": "7-app",
+        "peekOfCode": "users = {\n    1: {\"name\": \"Balou\", \"locale\": \"fr\", \"timezone\": \"Europe/Paris\"},\n    2: {\"name\": \"Beyonce\", \"locale\": \"en\", \"timezone\": \"US/Central\"},\n    3: {\"name\": \"Spock\", \"locale\": \"kg\", \"timezone\": \"Vulcan\"},\n    4: {\"name\": \"Teletubby\", \"locale\": None, \"timezone\": \"Europe/London\"},\n}\n@babel.localeselector\ndef get_locale():\n    \"\"\" Locale selector. \"\"\"\n    if request.args.get('locale') in Config.LANGUAGES:",
+        "detail": "7-app",
         "documentation": {}
     }
 ]
