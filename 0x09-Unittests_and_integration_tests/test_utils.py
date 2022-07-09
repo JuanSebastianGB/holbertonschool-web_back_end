@@ -13,7 +13,6 @@ class TestAccessNestedMap(unittest.TestCase):
     the test access nested map
     test cases class.
     """
-
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
         ({"a": {"b": 2}}, ("a", ), {"b": 2}),
@@ -38,7 +37,7 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
-
+    """test get_json"""
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
@@ -68,11 +67,15 @@ class TestMemoize(unittest.TestCase):
 
             @memoize
             def a_property(self):
-                """property for testing memoize decorator. """
+                """ property for testing memoize decorator. """
                 return self.a_method()
 
         with patch.object(TestClass, 'a_method', return_value=42) as mocked_fn:
-            obj = TestClass()
-            self.assertEqual(obj.a_property, mocked_fn.return_value)
-            self.assertEqual(obj.a_property, mocked_fn.return_value)
+            test_class = TestClass()
+            returned = test_class.a_property
+            self.assertEqual(returned, 42)
             mocked_fn.assert_called_once()
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -185,7 +185,7 @@
         "kind": 6,
         "importPath": "test_utils",
         "description": "test_utils",
-        "peekOfCode": "class TestGetJson(unittest.TestCase):\n    @parameterized.expand([\n        (\"http://example.com\", {\"payload\": True}),\n        (\"http://holberton.io\", {\"payload\": False})\n    ])\n    def test_get_json(self, url, expected):\n        \"\"\"\n        Assert the output is equal to the expected result.\n        \"\"\"\n        with patch('requests.get') as executed_function:",
+        "peekOfCode": "class TestGetJson(unittest.TestCase):\n    \"\"\"test get_json\"\"\"\n    @parameterized.expand([\n        (\"http://example.com\", {\"payload\": True}),\n        (\"http://holberton.io\", {\"payload\": False})\n    ])\n    def test_get_json(self, url, expected):\n        \"\"\"\n        Assert the output is equal to the expected result.\n        \"\"\"",
         "detail": "test_utils",
         "documentation": {}
     },
