@@ -88,6 +88,22 @@
         "documentation": {}
     },
     {
+        "label": "get_json",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "memoize",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
         "label": "unittest",
         "kind": 6,
         "isExtraImport": true,
@@ -110,6 +126,14 @@
         "description": "parameterized",
         "isExtraImport": true,
         "detail": "parameterized",
+        "documentation": {}
+    },
+    {
+        "label": "patch",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
         "documentation": {}
     },
     {
@@ -153,6 +177,15 @@
         "importPath": "test_utils",
         "description": "test_utils",
         "peekOfCode": "class TestAccessNestedMap(unittest.TestCase):\n    \"\"\"\n    the test access nested map\n    test cases class.\n    \"\"\"\n    @parameterized.expand([\n        ({\"a\": 1}, (\"a\",), 1),\n        ({\"a\": {\"b\": 2}}, (\"a\", ), {\"b\": 2}),\n        ({\"a\": {\"b\": 2}}, (\"a\", \"b\"), 2)\n    ])",
+        "detail": "test_utils",
+        "documentation": {}
+    },
+    {
+        "label": "TestGetJson",
+        "kind": 6,
+        "importPath": "test_utils",
+        "description": "test_utils",
+        "peekOfCode": "class TestGetJson(unittest.TestCase):\n    @parameterized.expand([\n        (\"http://example.com\", {\"payload\": True}),\n        (\"http://holberton.io\", {\"payload\": False})\n    ])\n    def test_get_json(self, url, expected):\n        \"\"\"\n        Assert the output is equal to the expected result.\n        \"\"\"\n        with patch('requests.get') as executed_function:",
         "detail": "test_utils",
         "documentation": {}
     },
