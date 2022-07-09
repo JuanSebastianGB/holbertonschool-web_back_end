@@ -36,8 +36,7 @@ def get_user() -> dict:
     if login_as:
         user = users[int(login_as)]
         if user:
-            print('getting user:' + str(user))
-        return user
+            return user
     return None
 
 
