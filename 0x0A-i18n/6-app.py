@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+from flask_babel import refresh
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -20,6 +21,12 @@ def get_locale():
     """ Locale selector. """
     if request.args.get('locale') in Config.LANGUAGES:
         return request.args.get('locale')
+
+    if hasattr(g, "user") and (
+        g.user['locale'] and
+        g.user['locale'] in Config.LANGUAGES
+    ):
+        return g.user['locale']
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
@@ -57,8 +64,9 @@ def before_request():
     variable `g.user`
     """
 
-    if get_user():
+    if get_user() is not None:
         g.user = get_user()
+        refresh()
 
 
 @app.route('/', strict_slashes=False)
