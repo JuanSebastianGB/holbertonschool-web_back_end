@@ -194,7 +194,7 @@
         "kind": 6,
         "importPath": "test_utils",
         "description": "test_utils",
-        "peekOfCode": "class TestMemoize(unittest.TestCase):\n    \"\"\" Class for testing memoize decorator. \"\"\"\n    def test_memoize(self):\n        class TestClass:\n            \"\"\" temporal class for testing memoize decorator. \"\"\"\n            def a_method(self):\n                \"\"\" a method for testing memoize decorator. \"\"\"\n                return 42\n            @memoize\n            def a_property(self):",
+        "peekOfCode": "class TestMemoize(unittest.TestCase):\n    \"\"\" Class for testing memoize decorator. \"\"\"\n    def test_memoize(self):\n        \"\"\" Test memoize decorator. \"\"\"\n        class TestClass:\n            \"\"\" temporal class for testing memoize decorator. \"\"\"\n            def a_method(self):\n                \"\"\" a method for testing memoize decorator. \"\"\"\n                return 42\n            @memoize",
         "detail": "test_utils",
         "documentation": {}
     },

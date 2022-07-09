@@ -58,6 +58,7 @@ class TestMemoize(unittest.TestCase):
     """ Class for testing memoize decorator. """
 
     def test_memoize(self):
+        """ Test memoize decorator. """
         class TestClass:
             """ temporal class for testing memoize decorator. """
 
