@@ -190,6 +190,15 @@
         "documentation": {}
     },
     {
+        "label": "TestMemoize",
+        "kind": 6,
+        "importPath": "test_utils",
+        "description": "test_utils",
+        "peekOfCode": "class TestMemoize(unittest.TestCase):\n    def test_memoize(self):\n        class TestClass:\n            def a_method(self):\n                return 42\n            @memoize\n            def a_property(self):\n                return self.a_method()\n        with patch.object(TestClass, 'a_method', return_value=42) as mocked_fn:\n            obj = TestClass()",
+        "detail": "test_utils",
+        "documentation": {}
+    },
+    {
         "label": "access_nested_map",
         "kind": 2,
         "importPath": "utils",
