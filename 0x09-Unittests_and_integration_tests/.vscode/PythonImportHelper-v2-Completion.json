@@ -56,15 +56,6 @@
         "documentation": {}
     },
     {
-        "label": "utils",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "utils",
-        "description": "utils",
-        "detail": "utils",
-        "documentation": {}
-    },
-    {
         "label": "get_json",
         "importPath": "utils",
         "description": "utils",
@@ -106,6 +97,22 @@
         "documentation": {}
     },
     {
+        "label": "parameterized",
+        "importPath": "parameterized",
+        "description": "parameterized",
+        "isExtraImport": true,
+        "detail": "parameterized",
+        "documentation": {}
+    },
+    {
+        "label": "parameterized_class",
+        "importPath": "parameterized",
+        "description": "parameterized",
+        "isExtraImport": true,
+        "detail": "parameterized",
+        "documentation": {}
+    },
+    {
         "label": "requests",
         "kind": 6,
         "isExtraImport": true,
@@ -127,7 +134,7 @@
         "kind": 6,
         "importPath": "client",
         "description": "client",
-        "peekOfCode": "class GithubOrgClient:\n    \"\"\"A Githib org client\n    \"\"\"\n    ORG_URL = \"https://api.github.com/orgs/{org}\"\n    def __init__(self, org_name: str) -> None:\n        \"\"\"Init method of GithubOrgClient\"\"\"\n        self._org_name = org_name\n    @memoize\n    def org(self) -> Dict:\n        \"\"\"Memoize org\"\"\"",
+        "peekOfCode": "class GithubOrgClient:\n    \"\"\"A Github org client\n    \"\"\"\n    ORG_URL = \"https://api.github.com/orgs/{org}\"\n    def __init__(self, org_name: str) -> None:\n        \"\"\"Init method of GithubOrgClient\"\"\"\n        self._org_name = org_name\n    @memoize\n    def org(self) -> Dict:\n        \"\"\"Memoize org\"\"\"",
         "detail": "client",
         "documentation": {}
     },
