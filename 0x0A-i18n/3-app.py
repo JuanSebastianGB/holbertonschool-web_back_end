@@ -16,7 +16,7 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-class Config(object):
+class Config():
     """ The `Config` class is a class that contains a list of languages"""
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
