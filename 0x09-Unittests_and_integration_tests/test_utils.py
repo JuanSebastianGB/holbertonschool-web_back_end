@@ -32,5 +32,4 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         Assert the output is equal to the expected result.
         """
-        with self.assertRaises(KeyError):
-            access_nested_map(nested_map, path)
+        self.assertRaises(KeyError, access_nested_map, nested_map, path)
