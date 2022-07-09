@@ -591,7 +591,7 @@
         "kind": 2,
         "importPath": "6-app",
         "description": "6-app",
-        "peekOfCode": "def get_user() -> dict:\n    \"\"\"\n    If the login_as query parameter is present,\n    return the user with the corresponding id, otherwise\n    return None\n    :return: A dictionary of the user.\n    \"\"\"\n    login_as = request.args.get('login_as', False)\n    if login_as:\n        user = users[int(login_as)]",
+        "peekOfCode": "def get_user() -> dict:\n    \"\"\"\n    If the login_as query parameter is present,\n    return the user with the corresponding id, otherwise\n    return None\n    :return: A dictionary of the user.\n    \"\"\"\n    user_id = request.args.get('login_as')\n    if user_id and int(user_id) in users:\n        return users[int(user_id)]",
         "detail": "6-app",
         "documentation": {}
     },
@@ -609,7 +609,7 @@
         "kind": 2,
         "importPath": "6-app",
         "description": "6-app",
-        "peekOfCode": "def index() -> str:\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('5-index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file\n    is being run as a script or imported as a module.\"\"\"\n    app.run(host='0.0.0.0', port=5000, debug=True)",
+        "peekOfCode": "def index() -> str:\n    \"\"\"\n    The function `index()` returns the rendered template `index.html`\n    :return: The index.html file is being returned.\n    \"\"\"\n    return render_template('6-index.html')\nif __name__ == \"__main__\":\n    \"\"\" This is a common Python idiom to check if the file\n    is being run as a script or imported as a module.\"\"\"\n    app.run(host='0.0.0.0', port=5000, debug=True)",
         "detail": "6-app",
         "documentation": {}
     },

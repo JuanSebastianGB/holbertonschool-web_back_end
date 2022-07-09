@@ -38,11 +38,9 @@ def get_user() -> dict:
     return None
     :return: A dictionary of the user.
     """
-    login_as = request.args.get('login_as', False)
-    if login_as:
-        user = users[int(login_as)]
-        if user:
-            return user
+    user_id = request.args.get('login_as')
+    if user_id and int(user_id) in users:
+        return users[int(user_id)]
     return None
 
 
@@ -76,7 +74,7 @@ def index() -> str:
     :return: The index.html file is being returned.
     """
 
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == "__main__":
