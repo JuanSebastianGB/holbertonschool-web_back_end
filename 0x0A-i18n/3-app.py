@@ -26,7 +26,7 @@ class Config(object):
 app.config.from_object(Config)
 
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def index() -> str:
     """
     The function `index()` returns the rendered template `index.html`
