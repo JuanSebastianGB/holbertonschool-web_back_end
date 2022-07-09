@@ -25,19 +25,19 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user(login_as) -> dict:
+def get_user() -> dict:
     """
-    It returns a user if the login_as query
-    parameter is set, otherwise it returns None
-
-    :param login_as: The user ID of the user you want to login as
-    :return: A dictionary of the user's information.
+    If the login_as query parameter is present,
+    return the user with the corresponding id, otherwise
+    return None
+    :return: A dictionary of the user.
     """
     login_as = request.args.get('login_as', False)
     if login_as:
         user = users[int(login_as)]
         if user:
-            return user
+            print('getting user:' + str(user))
+        return user
     return None
 
 
@@ -51,7 +51,7 @@ class Config():
 app.config.from_object(Config)
 
 
-@app.before_request()
+@app.before_request
 def before_request():
     """
     > If the user is logged in, get the user object from
@@ -70,7 +70,7 @@ def index() -> str:
     :return: The index.html file is being returned.
     """
 
-    return render_template('4-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == "__main__":
