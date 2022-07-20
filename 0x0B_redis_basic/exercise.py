@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" Exercise """
+
 
 import uuid
 import redis
@@ -39,12 +41,6 @@ class Cache():
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
-
-    def retrieve(self, key):
-        """
-        Retrieve data from cache
-        """
-        return self.redis.get(key)
 
     def get(
         self,
