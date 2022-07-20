@@ -2,7 +2,7 @@
 
 import uuid
 import redis
-from typing import Union
+from typing import Union, Optional, Callable
 
 
 class Cache():
@@ -30,3 +30,14 @@ class Cache():
         Retrieve data from cache
         """
         return self.redis.get(key)
+
+    def get(
+        self,
+        key: str,
+        fn: Optional[Callable] = None
+    ) -> Union[str, bytes, int, float]:
+        """
+        Get data from cache or call function
+        """
+        data = self._redis.get(key)
+        return fn(data) if fn else data
