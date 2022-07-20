@@ -1,0 +1,6 @@
+docker run\
+  --name sql-container\
+  -e MYSQL_ROOT_PASSWORD=root\
+  -v /ownmysql:/etc/mysql/conf.d\
+  -p 6603:3306\
+  -d mysql
