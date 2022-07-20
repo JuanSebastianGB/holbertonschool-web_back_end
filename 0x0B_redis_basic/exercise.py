@@ -36,6 +36,23 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(fn):
+    """ calls history """
+    store = redis.Redis()
+    input_key = f"{fn.__qualname__}:inputs"
+    output_key = f"{fn.__qualname__}:outputs"
+    count = store.get(fn.__qualname__).decode("utf-8")
+    print(f"{fn.__qualname__} was called {count} times:")
+
+    inputs = store.lrange(input_key, 0, count)
+    outputs = store.lrange(output_key, 0, count)
+
+    for input, output in zip(inputs, outputs):
+        input = input.decode("utf-8")
+        output = output.decode("utf-8")
+        print("{}(*{}) -> {}".format(fn.__qualname__, input, output))
+
+
 class Cache():
     """
     Cache class
