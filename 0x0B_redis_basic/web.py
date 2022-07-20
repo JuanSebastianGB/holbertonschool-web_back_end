@@ -7,6 +7,9 @@ from Typing import Callable
 from functools import wraps
 
 
+_redis = redis.Redis()
+
+
 def count_url_wrapper(method: Callable) -> Callable:
     """ Decorator counting how many times
     a Url is accessed """
@@ -17,10 +20,10 @@ def count_url_wrapper(method: Callable) -> Callable:
 
         response_html = method(url)
 
-        store.incr(hashed_counter)
-        store.set(hashed_url, response_html)
-        store.expire(hashed_url, 10)
-        return response_html if not store.get(hashed_url) else store.get(
+        _redis.incr(hashed_counter)
+        _redis.set(hashed_url, response_html)
+        _redis.expire(hashed_url, 10)
+        return response_html if not _redis.get(hashed_url) else _redis.get(
             hashed_url)
     return wrapper
 
