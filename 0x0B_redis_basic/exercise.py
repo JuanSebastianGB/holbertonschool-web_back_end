@@ -3,6 +3,7 @@
 import uuid
 import redis
 from typing import Union, Optional, Callable
+import sys
 
 
 class Cache():
@@ -41,3 +42,15 @@ class Cache():
         """
         data = self._redis.get(key)
         return fn(data) if fn else data
+
+    def get_str(self, value: bytes) -> str:
+        """
+        Get data from cache as string
+        """
+        return value.decode("utf-8")
+
+    def get_int(self, value: bytes) -> str:
+        """
+        Get data from cache as int
+        """
+        return int.from_bytes(value, sys.byteorder)
