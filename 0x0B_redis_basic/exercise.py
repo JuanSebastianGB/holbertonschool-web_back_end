@@ -4,6 +4,19 @@ import uuid
 import redis
 from typing import Union, Optional, Callable
 import sys
+from functools import wraps
+
+
+def count_calls(callback: Callable) -> Callable:
+    """ Implementing counter """
+    key_counter = callback.__qualname__
+
+    @wraps(callback)
+    def wrapper(self, *args, **kwargs):
+        """ incr count """
+        self._redis.incr(key_counter)
+        return callback(self, *args, **kwargs)
+    return wrapper
 
 
 class Cache():
@@ -18,6 +31,7 @@ class Cache():
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Store data in cache
