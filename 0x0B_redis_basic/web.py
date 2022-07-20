@@ -13,7 +13,7 @@ def count_url_wrapper(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(url):
         hashed_url = f'hashed_url:{url}'
-        hashed_counter = f'hashed_counter:{url}'
+        hashed_counter = f'count:{url}'
 
         response_html = method(url)
 
