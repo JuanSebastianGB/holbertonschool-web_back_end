@@ -9,15 +9,15 @@ import sys
 from functools import wraps
 
 
-def count_calls(callback: Callable) -> Callable:
+def count_calls(method: Callable) -> Callable:
     """ Implementing counter """
-    key_counter = callback.__qualname__
+    key_counter = method.__qualname__
 
-    @wraps(callback)
+    @wraps(method)
     def wrapper(self, *args, **kwargs):
         """ incr count """
         self._redis.incr(key_counter)
-        return callback(self, *args, **kwargs)
+        return method(self, *args, **kwargs)
     return wrapper
 
 
