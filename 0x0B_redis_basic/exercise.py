@@ -2,6 +2,7 @@
 
 import uuid
 import redis
+from typing import Union
 
 
 class Cache():
@@ -13,14 +14,15 @@ class Cache():
         """
         Constructor
         """
-        self._redis = redis.Redis().flushdb()
+        self._redis = redis.Redis()
+        self._redis.flushdb()
 
-    def store(self, data):
+    def store(self, data: Union(str, bytes, int, float)) -> str:
         """
         Store data in cache
         """
-        key = self.redis.incr(key=uuid.uuid4().hex)
-        self.redis.set(key, data)
+        key = str(uuid.uuid4())
+        self._redis.set(key, data)
         return key
 
     def retrieve(self, key):
