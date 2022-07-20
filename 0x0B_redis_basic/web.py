@@ -20,7 +20,7 @@ def count_url_wrapper(method: Callable) -> Callable:
 
         store.incr(hashed_counter)
         store.set(hashed_url, response_html)
-        store.expire(cached_key, 10)
+        store.expire(hashed_url, 10)
         return response_html
     return wrapper
 
