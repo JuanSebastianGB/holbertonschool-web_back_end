@@ -1,0 +1,7 @@
+docker run -d\
+    -p 27017:27017\
+    --name mongoh\
+    -v mongo-data:/data/db\
+    -e MONGODB_INITDB_ROOT_USERNAME=admin\
+    -e MONGODB_INITDB_ROOT_PASSWORD=pass\
+    mongo:latest
