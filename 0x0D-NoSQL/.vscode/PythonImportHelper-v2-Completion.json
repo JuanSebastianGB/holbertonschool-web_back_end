@@ -1,0 +1,211 @@
+[
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 5,
+        "importPath": "10-main",
+        "description": "10-main",
+        "peekOfCode": "list_all = __import__('8-all').list_all\nupdate_topics = __import__('10-update_topics').update_topics\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    update_topics(school_collection, \"Holberton school\",\n                  [\"Sys admin\", \"AI\", \"Algorithm\"])\n    schools = list_all(school_collection)\n    for school in schools:\n        print(",
+        "detail": "10-main",
+        "documentation": {}
+    },
+    {
+        "label": "update_topics",
+        "kind": 5,
+        "importPath": "10-main",
+        "description": "10-main",
+        "peekOfCode": "update_topics = __import__('10-update_topics').update_topics\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    update_topics(school_collection, \"Holberton school\",\n                  [\"Sys admin\", \"AI\", \"Algorithm\"])\n    schools = list_all(school_collection)\n    for school in schools:\n        print(\n            \"[{}] {} {}\".format(",
+        "detail": "10-main",
+        "documentation": {}
+    },
+    {
+        "label": "update_topics",
+        "kind": 2,
+        "importPath": "10-update_topics",
+        "description": "10-update_topics",
+        "peekOfCode": "def update_topics(mongo_collection, name, topics):\n    \"\"\" update_topics \"\"\"\n    mongo_collection.update_many(\n        {'name': name},\n        {'$set': {'topics': topics}})",
+        "detail": "10-update_topics",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 5,
+        "importPath": "101-main",
+        "description": "101-main",
+        "peekOfCode": "list_all = __import__('8-all').list_all\ninsert_school = __import__('9-insert_school').insert_school\ntop_students = __import__('101-students').top_students\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    students_collection = client.my_db.students\n    j_students = [\n        {'name': \"John\", 'topics': [{'title': \"Algo\", 'score': 10.3}, {'title': \"C\", 'score': 6.2}, {'title': \"Python\", 'score': 12.1}]},\n        {'name': \"Bob\", 'topics': [{'title': \"Algo\", 'score': 5.4}, {'title': \"C\", 'score': 4.9}, {'title': \"Python\", 'score': 7.9}]},\n        {'name': \"Sonia\", 'topics': [{'title': \"Algo\", 'score': 14.8}, {'title': \"C\", 'score': 8.8}, {'title': \"Python\", 'score': 15.7}]},",
+        "detail": "101-main",
+        "documentation": {}
+    },
+    {
+        "label": "insert_school",
+        "kind": 5,
+        "importPath": "101-main",
+        "description": "101-main",
+        "peekOfCode": "insert_school = __import__('9-insert_school').insert_school\ntop_students = __import__('101-students').top_students\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    students_collection = client.my_db.students\n    j_students = [\n        {'name': \"John\", 'topics': [{'title': \"Algo\", 'score': 10.3}, {'title': \"C\", 'score': 6.2}, {'title': \"Python\", 'score': 12.1}]},\n        {'name': \"Bob\", 'topics': [{'title': \"Algo\", 'score': 5.4}, {'title': \"C\", 'score': 4.9}, {'title': \"Python\", 'score': 7.9}]},\n        {'name': \"Sonia\", 'topics': [{'title': \"Algo\", 'score': 14.8}, {'title': \"C\", 'score': 8.8}, {'title': \"Python\", 'score': 15.7}]},\n        {'name': \"Amy\", 'topics': [{'title': \"Algo\", 'score': 9.1}, {'title': \"C\", 'score': 14.2}, {'title': \"Python\", 'score': 4.8}]},",
+        "detail": "101-main",
+        "documentation": {}
+    },
+    {
+        "label": "top_students",
+        "kind": 5,
+        "importPath": "101-main",
+        "description": "101-main",
+        "peekOfCode": "top_students = __import__('101-students').top_students\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    students_collection = client.my_db.students\n    j_students = [\n        {'name': \"John\", 'topics': [{'title': \"Algo\", 'score': 10.3}, {'title': \"C\", 'score': 6.2}, {'title': \"Python\", 'score': 12.1}]},\n        {'name': \"Bob\", 'topics': [{'title': \"Algo\", 'score': 5.4}, {'title': \"C\", 'score': 4.9}, {'title': \"Python\", 'score': 7.9}]},\n        {'name': \"Sonia\", 'topics': [{'title': \"Algo\", 'score': 14.8}, {'title': \"C\", 'score': 8.8}, {'title': \"Python\", 'score': 15.7}]},\n        {'name': \"Amy\", 'topics': [{'title': \"Algo\", 'score': 9.1}, {'title': \"C\", 'score': 14.2}, {'title': \"Python\", 'score': 4.8}]},\n        {'name': \"Julia\", 'topics': [{'title': \"Algo\", 'score': 10.5}, {'title': \"C\", 'score': 10.2}, {'title': \"Python\", 'score': 10.1}]}",
+        "detail": "101-main",
+        "documentation": {}
+    },
+    {
+        "label": "top_students",
+        "kind": 2,
+        "importPath": "101-students",
+        "description": "101-students",
+        "peekOfCode": "def top_students(mongo_collection):\n    \"\"\"\n    Returns the top students of a given collection\n    \"\"\"\n    students = list(mongo_collection.find())\n    for student in students:\n        student['averageScore'] = sum(topic.get('score')\n                                      for topic in student.get(\n            'topics')) / len(student.get('topics'))\n    students.sort(key=lambda student: student.get('averageScore'),",
+        "detail": "101-students",
+        "documentation": {}
+    },
+    {
+        "label": "logs_aggregate",
+        "kind": 2,
+        "importPath": "102-log_stats",
+        "description": "102-log_stats",
+        "peekOfCode": "def logs_aggregate(collection):\n    \"\"\"\n    Returns the logs stats\n    \"\"\"\n    pipeline = [\n        {'$group': {'_id': '$ip', 'count': {'$sum': 1}}},\n        {'$sort': {'count': -1}},\n        {'$limit': 10}\n    ]\n    return list(collection.aggregate(pipeline))",
+        "detail": "102-log_stats",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 5,
+        "importPath": "11-main",
+        "description": "11-main",
+        "peekOfCode": "list_all = __import__('8-all').list_all\ninsert_school = __import__('9-insert_school').insert_school\nschools_by_topic = __import__('11-schools_by_topic').schools_by_topic\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    j_schools = [\n        {'name': \"Holberton school\",\n         'topics': [\"Algo\", \"C\", \"Python\", \"React\"]},\n        {'name': \"UCSF\", 'topics': [\"Algo\", \"MongoDB\"]},",
+        "detail": "11-main",
+        "documentation": {}
+    },
+    {
+        "label": "insert_school",
+        "kind": 5,
+        "importPath": "11-main",
+        "description": "11-main",
+        "peekOfCode": "insert_school = __import__('9-insert_school').insert_school\nschools_by_topic = __import__('11-schools_by_topic').schools_by_topic\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    j_schools = [\n        {'name': \"Holberton school\",\n         'topics': [\"Algo\", \"C\", \"Python\", \"React\"]},\n        {'name': \"UCSF\", 'topics': [\"Algo\", \"MongoDB\"]},\n        {'name': \"UCLA\", 'topics': [\"C\", \"Python\"]},",
+        "detail": "11-main",
+        "documentation": {}
+    },
+    {
+        "label": "schools_by_topic",
+        "kind": 5,
+        "importPath": "11-main",
+        "description": "11-main",
+        "peekOfCode": "schools_by_topic = __import__('11-schools_by_topic').schools_by_topic\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    j_schools = [\n        {'name': \"Holberton school\",\n         'topics': [\"Algo\", \"C\", \"Python\", \"React\"]},\n        {'name': \"UCSF\", 'topics': [\"Algo\", \"MongoDB\"]},\n        {'name': \"UCLA\", 'topics': [\"C\", \"Python\"]},\n        {'name': \"UCSD\", 'topics': [\"Cassandra\"]},",
+        "detail": "11-main",
+        "documentation": {}
+    },
+    {
+        "label": "schools_by_topic",
+        "kind": 2,
+        "importPath": "11-schools_by_topic",
+        "description": "11-schools_by_topic",
+        "peekOfCode": "def schools_by_topic(mongo_collection, topic):\n    \"\"\" schools by topic \"\"\"\n    return mongo_collection.find({'topics': topic})",
+        "detail": "11-schools_by_topic",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 2,
+        "importPath": "8-all",
+        "description": "8-all",
+        "peekOfCode": "def list_all(collection):\n    \"\"\" list_all \"\"\"\n    return collection.find()",
+        "detail": "8-all",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 5,
+        "importPath": "8-main",
+        "description": "8-main",
+        "peekOfCode": "list_all = __import__('8-all').list_all\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    schools = list_all(school_collection)\n    for school in schools:\n        print(\"[{}] {}\".format(school.get('_id'), school.get('name')))",
+        "detail": "8-main",
+        "documentation": {}
+    },
+    {
+        "label": "insert_school",
+        "kind": 2,
+        "importPath": "9-insert_school",
+        "description": "9-insert_school",
+        "peekOfCode": "def insert_school(mongo_collection, **kwargs):\n    \"\"\" insert_school \"\"\"\n    return mongo_collection.insert_one(kwargs).inserted_id",
+        "detail": "9-insert_school",
+        "documentation": {}
+    },
+    {
+        "label": "list_all",
+        "kind": 5,
+        "importPath": "9-main",
+        "description": "9-main",
+        "peekOfCode": "list_all = __import__('8-all').list_all\ninsert_school = __import__('9-insert_school').insert_school\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    new_school_id = insert_school(\n        school_collection, name=\"UCSF\", address=\"505 Parnassus Ave\")\n    print(\"New school created: {}\".format(new_school_id))\n    schools = list_all(school_collection)\n    for school in schools:",
+        "detail": "9-main",
+        "documentation": {}
+    },
+    {
+        "label": "insert_school",
+        "kind": 5,
+        "importPath": "9-main",
+        "description": "9-main",
+        "peekOfCode": "insert_school = __import__('9-insert_school').insert_school\nif __name__ == \"__main__\":\n    client = MongoClient('mongodb://127.0.0.1:27017')\n    school_collection = client.my_db.school\n    new_school_id = insert_school(\n        school_collection, name=\"UCSF\", address=\"505 Parnassus Ave\")\n    print(\"New school created: {}\".format(new_school_id))\n    schools = list_all(school_collection)\n    for school in schools:\n        print(",
+        "detail": "9-main",
+        "documentation": {}
+    }
+]
