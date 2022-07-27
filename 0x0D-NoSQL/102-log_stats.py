@@ -30,4 +30,4 @@ if __name__ == "__main__":
 
     print('IPs:')
     for log in logs_aggregate(collection):
-        print(f'\t{log.get("_id")} => {log.get("count")}')
+        print(f'\t{log.get("_id")}: {log.get("count")}')
