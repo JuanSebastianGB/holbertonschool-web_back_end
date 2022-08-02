@@ -14,4 +14,5 @@ export default async function handleProfileSignup(
   } catch (error) {
     listFilled.push({ status: 'rejected', value: error });
   }
+  return listFilled;
 }
