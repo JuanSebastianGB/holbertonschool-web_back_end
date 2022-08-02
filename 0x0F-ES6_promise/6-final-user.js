@@ -10,7 +10,7 @@ export default async function handleProfileSignup(
   try {
     const user = await signUpUser(firstName, lastName);
     listFilled.push({ status: 'fulfilled', value: user });
-    uploadPhoto(filename);
+    await uploadPhoto(filename);
   } catch (error) {
     listFilled.push({ status: 'rejected', value: error });
   }
