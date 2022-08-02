@@ -12,7 +12,7 @@ export default async function handleProfileSignup(
     listFilled.push({ status: 'fulfilled', value: user });
     await uploadPhoto(filename);
   } catch (error) {
-    listFilled.push({ status: 'rejected', value: error });
+    listFilled.push({ status: 'rejected', value: error.toString() });
   }
   return listFilled;
 }
