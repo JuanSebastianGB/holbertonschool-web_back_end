@@ -8,3 +8,4 @@ console.log(
 );
 console.log(cleanSet(new Set(['bonjovi', 'bonaparte', , 'banana'])));
 console.log(cleanSet(new Set(['bonjovi', 'bonaparte', , 'banana']), 'bon'));
+console.log(cleanSet(new Set([]), 'bon'));
