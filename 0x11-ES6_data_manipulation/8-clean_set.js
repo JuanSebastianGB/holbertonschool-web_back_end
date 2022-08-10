@@ -3,13 +3,10 @@ const cleanSet = (set, starString) => {
   if (typeof starString !== 'string') return '';
   if (starString.length === 0) return '';
 
-  const resultList = [];
-  set.forEach((el) => {
-    if (el !== undefined && el.startsWith(starString)) {
-      const processedElement = el.replace('bon', '');
-      resultList.push(processedElement);
-    }
-  });
-  return resultList.join('-');
+  const temporalArray = Array.from(set);
+  const filteredArray = temporalArray.filter(
+    (el) => el !== undefined && el.startsWith(starString),
+  );
+  return filteredArray.map((element) => element.replace(starString, '')).join('-');
 };
 export default cleanSet;
