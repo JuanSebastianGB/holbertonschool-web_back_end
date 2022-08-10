@@ -6,8 +6,8 @@ const cleanSet = (set, starString) => {
   const resultList = [];
   set.forEach((el) => {
     if (el !== undefined && el.startsWith(starString)) {
-      el.replace('bon', '');
-      resultList.push(el);
+      const processedElement = el.replace('bon', '');
+      resultList.push(processedElement);
     }
   });
   return resultList.join('-');
