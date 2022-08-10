@@ -1,7 +1,7 @@
 const cleanSet = (set, starString) => {
   if (typeof set !== 'object') return '';
   if (typeof starString !== 'string') return '';
-  if (starString === '') return '';
+  if (starString.length === 0) return '';
 
   const temporalArray = Array.from(set);
   const filteredArray = temporalArray.filter(
