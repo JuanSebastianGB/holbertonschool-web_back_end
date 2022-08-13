@@ -6,6 +6,7 @@ const countStudents = async (path) => {
       if (err) reject(new Error('Cannot load the database'));
       const students = data.split('\n').map((student) => student.split(','));
       students.shift();
+      let messageResponse = `Number of students: ${students.length}\n`;
       console.log(`Number of students: ${students.length}`);
       const fields = {};
 
@@ -16,13 +17,16 @@ const countStudents = async (path) => {
 
       const fieldList = Object.keys(fields);
       fieldList.forEach((field) => {
+        messageResponse += `Number of students in ${field}: ${
+          fields[field].length
+        }. List: ${fields[field].join(', ')}\n`;
         console.log(
           `Number of students in ${field}: ${
             fields[field].length
           }. List: ${fields[field].join(', ')}`,
         );
       });
-      resolve(students);
+      resolve(messageResponse);
     });
   });
 
