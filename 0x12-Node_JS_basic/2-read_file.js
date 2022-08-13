@@ -13,7 +13,7 @@ const countStudents = (path) => {
       else fields[sList[3]] = [sList[0]];
       return 0;
     });
-
+    console.log(`Number of students: ${students.length}`);
     Object.keys(fields).map((field) => {
       const message = `Number of students in ${field}: ${
         fields[field].length
