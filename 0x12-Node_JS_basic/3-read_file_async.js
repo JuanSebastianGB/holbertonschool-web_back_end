@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const countStudents = async (path) => {
+const countStudents = (path) => {
   const newPromise = new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) reject(new Error('Cannot load the database'));
