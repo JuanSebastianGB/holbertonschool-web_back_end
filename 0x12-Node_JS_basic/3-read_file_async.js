@@ -4,10 +4,12 @@ const countStudents = async (path) => {
   const newPromise = new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) reject(new Error('Cannot load the database'));
-      const students = data.split('\n').map((student) => student.split(','));
+      const students = data
+        .trim()
+        .split('\n')
+        .map((student) => student.split(','));
       students.shift();
-      let messageResponse = `Number of students: ${students.length}\n`;
-      console.log(`Number of students: ${students.length}`);
+      let message = `Number of students: ${students.length}\n`;
       const fields = {};
 
       students.forEach((student) => {
@@ -17,16 +19,11 @@ const countStudents = async (path) => {
 
       const fieldList = Object.keys(fields);
       fieldList.forEach((field) => {
-        messageResponse += `Number of students in ${field}: ${
-          fields[field].length
-        }. List: ${fields[field].join(', ')}\n`;
-        console.log(
-          `Number of students in ${field}: ${
-            fields[field].length
-          }. List: ${fields[field].join(', ')}`,
-        );
+        message += `Number of students in ${field}: ${fields[field].length}.`;
+        message += ` List: ${fields[field].join(', ')}\n`;
       });
-      resolve(messageResponse);
+      console.log(message.trimEnd());
+      resolve(message.trimEnd());
     });
   });
 
