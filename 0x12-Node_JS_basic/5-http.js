@@ -3,7 +3,7 @@ const countStudents = require('./3-read_file_async');
 
 const PORT = 1245;
 
-const requestListener = (req, res) => {
+const requestListener = async (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   const { url } = req;
   if (url === '/') {
