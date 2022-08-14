@@ -18,4 +18,4 @@ app.listen(PORT, () => {
   console.log('...');
 });
 
-module.export = app;
+module.exports = app;
