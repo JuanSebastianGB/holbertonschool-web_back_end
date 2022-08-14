@@ -11,3 +11,5 @@ const app = http.createServer(requestListener);
 app.listen(PORT, () => {
   console.log('...');
 });
+
+module.exports = app;
