@@ -25,8 +25,8 @@ const countStudents = (path) => {
         message += `Number of students in ${field}: ${fields[field].length}.`;
         message += ` List: ${fields[field].join(', ')}\n`;
       });
-      console.log(message.trimEnd());
-      resolve(message.trimEnd());
+      console.log(message);
+      resolve(message);
     });
   });
 

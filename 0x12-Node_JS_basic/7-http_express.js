@@ -8,7 +8,8 @@ app.get('/', (req, res) => res.send('Hello Holberton School!'));
 app.get('/students', async (req, res) => {
   try {
     const students = await countStudents(process.argv[2]);
-    res.send(`This is the list of our students\n${students}\n`);
+    console.log(students);
+    res.send(`This is the list of our students\n${students}`);
   } catch (err) {
     res.send(`${err.message}`);
   }
