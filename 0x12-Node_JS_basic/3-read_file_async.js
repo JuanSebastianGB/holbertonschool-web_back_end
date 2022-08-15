@@ -12,7 +12,9 @@ const countStudents = (path) => {
         .split('\n')
         .map((student) => student.split(','));
       students.shift();
-      let message = `Number of students: ${students.length}\n`;
+
+      const messagesList = [];
+      messagesList.push(`Number of students: ${students.length}`);
       const fields = {};
 
       students.forEach((student) => {
@@ -22,11 +24,13 @@ const countStudents = (path) => {
 
       const fieldList = Object.keys(fields);
       fieldList.forEach((field) => {
-        message += `Number of students in ${field}: ${fields[field].length}.`;
-        message += ` List: ${fields[field].join(', ')}\n`;
+        let message = `Number of students in ${field}: ${fields[field].length}.`;
+        message += ` List: ${fields[field].join(', ')}`;
+        messagesList.push(message);
       });
-      console.log(message);
-      resolve(message);
+      const customMessage = messagesList.join('\n');
+      console.log(customMessage);
+      resolve(customMessage);
     });
   });
 
