@@ -7,11 +7,15 @@ module.exports = async function countStudents(path) {
         reject(Error('Cannot load the database'));
         return;
       }
-      const students = data.split('\n').map((student) => student.split(','));
+      const students = data
+        .split('\n')
+        .filter((content) => content)
+        .map((student) => student.split(','));
       students.shift();
 
       const messagesList = [];
-      messagesList.push(`Number of students: ${students.length}`);
+      const LENGTH = students.length ? students.length : 0;
+      messagesList.push(`Number of students: ${LENGTH}`);
       const fields = {};
 
       students.forEach((student) => {
