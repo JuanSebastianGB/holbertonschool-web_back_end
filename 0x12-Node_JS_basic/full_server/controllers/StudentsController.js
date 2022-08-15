@@ -5,8 +5,11 @@ class StudentsController {
     readDatabase(process.argv[2])
       .then((fields) => {
         const responseList = ['This is the list of our students'];
+        console.log(fields);
         Object.keys(fields).forEach((field) => {
-          const message = `Number of students in ${field}: ${field.length}. List: ${field}`;
+          const message = `Number of students in ${field}: ${
+            field.length
+          }. List: ${fields[field].join(', ')}`;
           responseList.push(message);
         });
         res.status(200).send(responseList.join('\n'));
@@ -25,7 +28,9 @@ class StudentsController {
         const responseList = ['This is the list of our students'];
         Object.keys(fields).forEach((field) => {
           if (field !== major) return;
-          const message = `Number of students in ${field}: ${field.length}. List: ${field}`;
+          const message = `Number of students in ${field}: ${
+            field.length
+          }. List: ${fields[field].join(', ')}`;
           responseList.push(message);
         });
         res.status(200).send(responseList.join('\n'));
