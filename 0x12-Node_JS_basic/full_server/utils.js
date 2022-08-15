@@ -4,7 +4,10 @@ import { readFile } from 'fs';
 const readDatabase = (path) => {
   const newPromise = new Promise((resolve, reject) => {
     readFile(path, 'utf8', (err, data) => {
-      if (err) reject(new Error('Cannot load the database'));
+      if (err) {
+        reject(new Error('Cannot load the database'));
+        return;
+      }
       const students = data
         .split('\n')
         .filter((info) => info)
