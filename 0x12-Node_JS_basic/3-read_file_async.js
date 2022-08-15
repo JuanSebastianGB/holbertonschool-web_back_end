@@ -7,10 +7,7 @@ const countStudents = (path) => {
         reject(Error('Cannot load the database'));
         return;
       }
-      const students = data
-        .trim()
-        .split('\n')
-        .map((student) => student.split(','));
+      const students = data.split('\n').map((student) => student.split(','));
       students.shift();
 
       const messagesList = [];
