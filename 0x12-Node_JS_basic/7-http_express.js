@@ -5,12 +5,13 @@ const app = express();
 
 app.get('/', (req, res) => res.send('Hello Holberton School!'));
 app.get('/students', async (req, res) => {
+  const initialHeaderResponse = 'This is the list of our students\n';
   countStudents(process.argv[2])
     .then((response) => {
-      const message = `This is the list of our students\n${response}`;
+      const message = `${initialHeaderResponse}${response}`;
       res.send(message);
     })
-    .catch((err) => res.send(`${err.message}`));
+    .catch((err) => res.send(`${initialHeaderResponse}${err.message}`));
 });
 
 app.listen(1245);
