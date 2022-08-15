@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const countStudents = (path) => {
-  const newPromise = new Promise((resolve, reject) => {
+module.exports = async function countStudents(path) {
+  return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
         reject(Error('Cannot load the database'));
@@ -30,8 +30,4 @@ const countStudents = (path) => {
       resolve(customMessage);
     });
   });
-
-  return newPromise;
 };
-
-module.exports = countStudents;
