@@ -8,9 +8,10 @@ const requestListener = async (req, res) => {
   const { url } = req;
   if (url === '/') res.end('Hello Holberton School!');
   if (url === '/students') {
+    const initialHeaderResponse = 'This is the list of our students\n';
     countStudents(process.argv[2])
-      .then((data) => res.end(`This is the list of our students\n${data}`))
-      .catch((err) => res.end(`${err.message}\n`));
+      .then((data) => res.end(`${initialHeaderResponse}${data}`))
+      .catch((err) => res.end(`${initialHeaderResponse}${err.message}`));
   }
 };
 
