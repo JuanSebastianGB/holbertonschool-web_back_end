@@ -32,7 +32,7 @@ describe('cart endpoint', () => {
 });
 
 describe('/login endpoint', () => {
-  it('Post /login', (end) => {
+  it('Post /login', (done) => {
     const url = `${URL}login/`;
     const data = {
       method: 'POST',
@@ -43,10 +43,10 @@ describe('/login endpoint', () => {
     request(data, (err, res, body) => {
       expect(res.statusCode).to.equal(200);
       expect(body).to.equal('Welcome Test');
-      end();
+      done();
     });
   });
-  it('Post /login/Something to be status code 404', (end) => {
+  it('Post /login/Something to be status code 404', (done) => {
     const url = `${URL}login/something`;
     const data = {
       method: 'POST',
@@ -56,7 +56,7 @@ describe('/login endpoint', () => {
     };
     request(data, (err, res, body) => {
       expect(res.statusCode).to.equal(404);
-      end();
+      done();
     });
   });
 });
