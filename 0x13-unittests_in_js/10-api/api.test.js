@@ -62,13 +62,14 @@ describe('/login endpoint', () => {
 });
 
 describe('/available_payments endpoint', () => {
-  it('Get /available_payments should return {payment_methods: {credit_cards: true, paypal: false,},}', () => {
+  it('Get /available_payments should return {payment_methods: {credit_cards: true, paypal: false,},}', (done) => {
     const url = `${URL}available_payments/`;
     request(url, (err, res, body) => {
       expect(res.statusCode).to.equal(200);
       expect(body).to.equal(
         '{"payment_methods":{"credit_cards":true,"paypal":false}}'
       );
+      done();
     });
   });
 });
