@@ -2,6 +2,17 @@ const { expect } = require('chai');
 
 const request = require('request');
 const URL = 'http://localhost:7865/';
+
+describe('Request to the root endpoint', () => {
+  it('Get /', (done) => {
+    request(URL, (err, res, body) => {
+      expect(res.statusCode).to.equal(200);
+      expect(body).to.equal('Welcome to the payment system');
+      done();
+    });
+  });
+});
+
 describe('cart endpoint', () => {
   it('endpoint Get /cart/:id<number>:', (done) => {
     const url = `${URL}cart/1`;
