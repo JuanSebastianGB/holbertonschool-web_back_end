@@ -36,6 +36,7 @@ describe('calculateNumber with type equal to SUBTRACT', function () {
     assert.equal(calculateNumber('SUBTRACT', 1, 8), -7);
     assert.equal(calculateNumber('SUBTRACT', 5, 7), -2);
     assert.equal(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
+    assert.equal(calculateNumber('SUBTRACT', 3.1, 2.5), 0);
   });
   it('check that the subtract is working correctly with negative numbers', function () {
     assert.equal(calculateNumber('SUBTRACT', -5, 10), -15);
@@ -72,6 +73,7 @@ describe('calculateNumber with type equal to DIVIDE', function () {
     assert.equal(calculateNumber('DIVIDE', 5, 7), 0.71);
     assert.equal(calculateNumber('DIVIDE', 5, 2), 2.5);
     assert.equal(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
+    assert.equal(calculateNumber('DIVIDE', 0, 4.5), 0);
   });
 });
 
