@@ -50,7 +50,21 @@ const jobs = [
 const queue = createQueue();
 
 jobs.map((el, key) => {
-  const job = queue.create('push_notification_code_2', el).save((err) => {
-    !err && console.log(`Notification job created: ${job.id}`);
-  });
+  const job = queue
+    .create('push_notification_code_2', el)
+    .save((err) => {
+      !err && console.log(`Notification job created: ${job.id}`);
+    })
+    .on('enqueue', () => {
+      console.log(`Notification job created: ${job.id}`);
+    })
+    .on('complete', () => {
+      console.log(`Notification job ${job.id} completed`);
+    })
+    .on('failed', (err) => {
+      console.log(`Notification job ${job.id} failed: ${err}`);
+    })
+    .on('progress', (progress) => {
+      console.log(`Notification job ${job.id} ${progress}% complete`);
+    });
 });
