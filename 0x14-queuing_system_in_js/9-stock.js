@@ -5,11 +5,11 @@ import { promisify } from 'util';
 const app = express();
 const client = createClient();
 
-const listProducts = [
-  { Id: 1, name: 'Suitcase 250', price: 50, stock: 4 },
-  { Id: 2, name: 'Suitcase 450', price: 100, stock: 10 },
-  { Id: 3, name: 'Suitcase 650', price: 350, stock: 2 },
-  { Id: 4, name: 'Suitcase 1050', price: 550, stock: 5 },
+let listProducts = [
+  { Id: 1, name: 'Suitcase 250', price: 50, initialAvailableQuantity: 4 },
+  { Id: 2, name: 'Suitcase 450', price: 100, initialAvailableQuantity: 10 },
+  { Id: 3, name: 'Suitcase 650', price: 350, initialAvailableQuantity: 2 },
+  { Id: 4, name: 'Suitcase 1050', price: 550, initialAvailableQuantity: 5 },
 ];
 const getItemById = (id) =>
   listProducts.filter((product) => product.Id === id)[0];
@@ -30,9 +30,9 @@ app.get('/reserve_product/:itemId', async (req, res) => {
   if (!product) return res.json({ status: 'Product not found' });
   const currentStock = await getCurrentReservedStockById(itemId);
   if (currentStock === null) {
-    if (product.stock <= 0)
+    if (product.initialAvailableQuantity <= 0)
       return res.json({ status: 'Not enough stock available', itemId });
-    return reserveStockById(itemId, product.stock - 1);
+    return reserveStockById(itemId, product.initialAvailableQuantity - 1);
   } else if (currentStock <= 0)
     return res.json({ status: 'Not enough stock available', itemId });
   else {
